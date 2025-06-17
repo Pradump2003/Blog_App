@@ -10,3 +10,7 @@ const error = (err, req, res, next) => {
 };
 
 module.exports = error;
+
+//~ first wrap all the async functions inside asyncHandler
+//~ handle that error using error middleware
+//~ import it in main file and use it at last

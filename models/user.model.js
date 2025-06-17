@@ -33,6 +33,9 @@ let userSchema = new mongoose.Schema(
 
 //! this is a pre-hook: whenever a new resource is about to be created in db, this pre-hook will be executed first
 //? hashing ==> for encrypting the password, it is a one way process, which means we cant decrypt the password
+//~ 1) a random string is generated (salt)
+//~ 2) salt is hashed with password (hp)
+//~ 3) this (hp) is stored in db
 
 userSchema.pre("save", async function () {
   let salt = await bcryptjs.genSalt(10);

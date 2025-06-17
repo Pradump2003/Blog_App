@@ -1,5 +1,5 @@
 let userCollection = require("../models/user.model");
-const bcryptjs = require("bcryptjs");
+// const bcryptjs = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 
 const registerUser = asyncHandler(async (req, res) => {
