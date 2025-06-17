@@ -10,10 +10,10 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.get("/ping", (req, res) => {
-  res.send({ message: "pong" });
-});
 app.use("/v1/users", userRouters);
+
+//! Should be implemented at last
+app.use(error);
 
 app.listen(process.env.PORT, (err) => {
   if (err) throw err;

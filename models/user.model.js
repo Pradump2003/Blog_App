@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcryptjs = require("bcryptjs");
 
 let userSchema = new mongoose.Schema(
   {
@@ -29,5 +30,14 @@ let userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+//! this is a pre-hook: whenever a new resource is about to be created in db, this pre-hook will be executed first
+//? hashing ==> for encrypting the password, it is a one way process, which means we cant decrypt the password
+
+userSchema.pre("save", async function () {
+  let salt = await bcryptjs.genSalt(10);
+  let handlePassword = await bcryptjs.hash(this.password, salt);
+  this.password = handlePassword;
+});
 
 module.exports = mongoose.model("User", userSchema);
